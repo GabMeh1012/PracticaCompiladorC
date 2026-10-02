@@ -1,4 +1,4 @@
-"""Formato de un diagnóstico para la terminal. Se implementa en el proyecto 1."""
+"""Formato de un diagnóstico para la terminal."""
 
 from minic.diagnostics.diagnostic import Diagnostic
 

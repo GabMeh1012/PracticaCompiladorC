@@ -1,11 +1,11 @@
 ---
 name: analizador-lexico-mini-c
-description: Especificación del analizador léxico de Mini-C definida por <Nombre del estudiante>. Úsala cuando debas implementar, probar o corregir el lexer de Mini-C: indica alfabeto, palabras reservadas, patrones por tipo de token, políticas de separación, prioridades y formato de salida.
+description: Especificación del analizador léxico de Mini-C definida por Rosita Fresita. Úsala cuando debas implementar, probar o corregir el lexer de Mini-C: indica alfabeto, palabras reservadas, patrones por tipo de token, políticas de separación, prioridades y formato de salida.
 ---
 
 # Analizador léxico de Mini-C
 
-Especificación elaborada por **<Nombre del estudiante>** (grupo <Grupo>) en el Taller N°6 de Lenguajes Formales y Autómatas (UTP-FISC). Implementa el analizador **exactamente** como se describe aquí. Si algo no está definido, pregunta antes de asumir; no inventes tokens, reglas ni excepciones.
+Especificación elaborada por **Rosita Fresita** (grupo 1SF134) en el Taller N°6 de Lenguajes Formales y Autómatas (UTP-FISC). Implementa el analizador **exactamente** como se describe aquí. Si algo no está definido, pregunta antes de asumir; no inventes tokens, reglas ni excepciones.
 
 ## 1. Alfabeto Σ
 
@@ -28,13 +28,13 @@ Notación: `"abc"` literal · `[a-z]` clase · `|` unión · `*` cero o más · 
 |---|---|
 | `KW_INT` | `"int"` |
 | `KW_WHILE` | `"while"` |
-| `IDENTIFIER` | `[A-Za-z_][A-Za-z0-9_]*` |
+| `IDENTIFIER` | `[a-zA-Z_] [a-zA-Z0-9_]*` |
 | `INTEGER_LITERAL` | `[0-9]#` |
 | `ASSIGN` | `"="` |
-| `PLUS` | `"+"` |
-| `MINUS` | `"-"` |
 | `EQUAL_EQUAL` | `"=="` |
 | `NOT_EQUAL` | `"!="` |
+| `PLUS` | `"+"` |
+| `MINUS` | `"-"` |
 | `LPAREN` | `"("` |
 | `RPAREN` | `")"` |
 | `LBRACE` | `"{"` |
@@ -60,7 +60,7 @@ No existen otros tipos de token.
 - Grupo 1 (de mayor a menor prioridad): `KW_INT` = `KW_WHILE` > `IDENTIFIER`
 - Grupo 2 (de mayor a menor prioridad): `EQUAL_EQUAL` > `ASSIGN`
 
-Sin conflicto de prioridad: `INTEGER_LITERAL`, `PLUS`, `MINUS`, `NOT_EQUAL`, `LPAREN`, `RPAREN`, `LBRACE`, `RBRACE`, `SEMICOLON`, `EOF`.
+Sin conflicto de prioridad: `INTEGER_LITERAL`, `EOF`, `SEMICOLON`, `PLUS`, `MINUS`, `RPAREN`, `LPAREN`, `NOT_EQUAL`, `LBRACE`, `RBRACE`.
 
 ## 6. Estructura del token y diagnósticos
 
@@ -84,15 +84,15 @@ whilex == -5
 
 Salida esperada según la especificación del estudiante:
 ```text
-IDENTIFIER 'int2' 1 1
-ASSIGN '=' 1 6
-INTEGER_LITERAL '12' 1 8
-IDENTIFIER 'abc' 1 10
-SEMICOLON ';' 1 13
-IDENTIFIER 'whilex' 2 1
-EQUAL_EQUAL '==' 2 8
-MINUS '-' 2 11
-INTEGER_LITERAL '5' 2 12
+IDENTIFIER 'int2' 1 1 
+ASSIGN '=' 1 6 
+INTEGER_LITERAL '12' 1 8 
+IDENTIFIER 'abc' 1 10 
+SEMICOLON ';' 1 13 
+IDENTIFIER 'whilex' 2 1 
+EQUAL_EQUAL '==' 2 8 
+MINUS '-' 2 11 
+INTEGER_LITERAL '5' 2 12 
 EOF '' 2 13
 ```
 

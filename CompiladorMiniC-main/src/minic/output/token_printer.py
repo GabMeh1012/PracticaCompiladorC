@@ -1,4 +1,4 @@
-"""Formato de un token para la terminal. Se implementa en el proyecto 1."""
+"""Formato de un token para la terminal."""
 
 from minic.lexer.token import Token
 
